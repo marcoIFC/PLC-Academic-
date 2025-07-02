@@ -1,0 +1,2512 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    READ
+    WRITE
+
+Grammar
+
+Rule 0     S' -> Init
+Rule 1     Init -> Cmds
+Rule 2     Cmds -> Cmd Cmds
+Rule 3     Cmds -> <empty>
+Rule 4     Cmd -> Cmd_If
+Rule 5     Cmd -> Cmd_If_Else
+Rule 6     Cmd -> Cmd_While
+Rule 7     Cmd -> Cmd_For
+Rule 8     Cmd -> Cmd_Write
+Rule 9     Cmd_Write -> PRINT ( Exp )
+Rule 10    Cmd_Read -> INPUT ( ID )
+Rule 11    Cmd_Read -> INPUT ( ID [ Exp ] )
+Rule 12    Cmd -> Cmd_Read
+Rule 13    Cmd -> Atrib ;
+Rule 14    Atrib -> Atrib_var
+Rule 15    Atrib -> Atrib_arr
+Rule 16    Atrib_var -> ID = Exp
+Rule 17    Atrib_arr -> ID [ Exp ] = Exp
+Rule 18    Cmd -> VARS
+Rule 19    VARS -> Decl VARS
+Rule 20    VARS -> <empty>
+Rule 21    Decl -> VAR IdList ;
+Rule 22    Decl -> ARR ID [ NUM ] ;
+Rule 23    IdList -> ID
+Rule 24    IdList -> ID , IdList
+Rule 25    Cmd_If -> IF ( Cond ) THEN { Cmds }
+Rule 26    Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+Rule 27    Cmd_While -> WHILE ( Cond ) DO { Cmds }
+Rule 28    Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+Rule 29    Exp -> Exp + Exp
+Rule 30    Exp -> Exp - Exp
+Rule 31    Exp -> Exp * Exp
+Rule 32    Exp -> Exp / Exp
+Rule 33    Exp -> Exp % Exp
+Rule 34    Exp -> Factor
+Rule 35    Factor -> NUM
+Rule 36    Factor -> ID
+Rule 37    Factor -> ID [ Exp ]
+Rule 38    Factor -> ( Exp )
+Rule 39    Cond -> NOT Cond
+Rule 40    Cond -> Cond AND Cond
+Rule 41    Cond -> Cond OR Cond
+Rule 42    Cond -> Exp > Exp
+Rule 43    Cond -> Exp > = Exp
+Rule 44    Cond -> Exp < Exp
+Rule 45    Cond -> Exp < = Exp
+Rule 46    Cond -> Exp = = Exp
+Rule 47    Cond -> Exp ! = Exp
+
+Terminals, with rules where they appear
+
+!                    : 47
+%                    : 33
+(                    : 9 10 11 25 26 27 28 38
+)                    : 9 10 11 25 26 27 28 38
+*                    : 31
++                    : 29
+,                    : 24
+-                    : 30
+/                    : 32
+;                    : 13 21 22 28 28
+<                    : 44 45
+=                    : 16 17 43 45 46 46 47
+>                    : 42 43
+AND                  : 40
+ARR                  : 22
+DO                   : 27 28
+ELSE                 : 26
+FOR                  : 28
+ID                   : 10 11 16 17 22 23 24 36 37
+IF                   : 25 26
+INPUT                : 10 11
+NOT                  : 39
+NUM                  : 22 35
+OR                   : 41
+PRINT                : 9
+READ                 : 
+THEN                 : 25 26
+VAR                  : 21
+WHILE                : 27
+WRITE                : 
+[                    : 11 17 22 37
+]                    : 11 17 22 37
+error                : 
+{                    : 25 26 26 27 28
+}                    : 25 26 26 27 28
+
+Nonterminals, with rules where they appear
+
+Atrib                : 13 28 28
+Atrib_arr            : 15
+Atrib_var            : 14
+Cmd                  : 2
+Cmd_For              : 7
+Cmd_If               : 4
+Cmd_If_Else          : 5
+Cmd_Read             : 12
+Cmd_While            : 6
+Cmd_Write            : 8
+Cmds                 : 1 2 25 26 26 27 28
+Cond                 : 25 26 27 28 39 40 40 41 41
+Decl                 : 19
+Exp                  : 9 11 16 17 17 29 29 30 30 31 31 32 32 33 33 37 38 42 42 43 43 44 44 45 45 46 46 47 47
+Factor               : 34
+IdList               : 21 24
+Init                 : 0
+VARS                 : 18 19
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Init
+    (1) Init -> . Cmds
+    (2) Cmds -> . Cmd Cmds
+    (3) Cmds -> .
+    (4) Cmd -> . Cmd_If
+    (5) Cmd -> . Cmd_If_Else
+    (6) Cmd -> . Cmd_While
+    (7) Cmd -> . Cmd_For
+    (8) Cmd -> . Cmd_Write
+    (12) Cmd -> . Cmd_Read
+    (13) Cmd -> . Atrib ;
+    (18) Cmd -> . VARS
+    (25) Cmd_If -> . IF ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> . IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+    (27) Cmd_While -> . WHILE ( Cond ) DO { Cmds }
+    (28) Cmd_For -> . FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+    (9) Cmd_Write -> . PRINT ( Exp )
+    (10) Cmd_Read -> . INPUT ( ID )
+    (11) Cmd_Read -> . INPUT ( ID [ Exp ] )
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INPUT resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 3 (Cmds -> .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    $end            reduce using rule 3 (Cmds -> .)
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    PRINT           shift and go to state 15
+    INPUT           shift and go to state 16
+    ID              shift and go to state 17
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! IF              [ reduce using rule 20 (VARS -> .) ]
+  ! WHILE           [ reduce using rule 20 (VARS -> .) ]
+  ! FOR             [ reduce using rule 20 (VARS -> .) ]
+  ! PRINT           [ reduce using rule 20 (VARS -> .) ]
+  ! INPUT           [ reduce using rule 20 (VARS -> .) ]
+  ! ID              [ reduce using rule 20 (VARS -> .) ]
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+  ! $end            [ reduce using rule 20 (VARS -> .) ]
+
+    Init                           shift and go to state 1
+    Cmds                           shift and go to state 2
+    Cmd                            shift and go to state 3
+    Cmd_If                         shift and go to state 4
+    Cmd_If_Else                    shift and go to state 5
+    Cmd_While                      shift and go to state 6
+    Cmd_For                        shift and go to state 7
+    Cmd_Write                      shift and go to state 8
+    Cmd_Read                       shift and go to state 9
+    Atrib                          shift and go to state 10
+    VARS                           shift and go to state 11
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+    Decl                           shift and go to state 20
+
+state 1
+
+    (0) S' -> Init .
+
+
+
+state 2
+
+    (1) Init -> Cmds .
+
+    $end            reduce using rule 1 (Init -> Cmds .)
+
+
+state 3
+
+    (2) Cmds -> Cmd . Cmds
+    (2) Cmds -> . Cmd Cmds
+    (3) Cmds -> .
+    (4) Cmd -> . Cmd_If
+    (5) Cmd -> . Cmd_If_Else
+    (6) Cmd -> . Cmd_While
+    (7) Cmd -> . Cmd_For
+    (8) Cmd -> . Cmd_Write
+    (12) Cmd -> . Cmd_Read
+    (13) Cmd -> . Atrib ;
+    (18) Cmd -> . VARS
+    (25) Cmd_If -> . IF ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> . IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+    (27) Cmd_While -> . WHILE ( Cond ) DO { Cmds }
+    (28) Cmd_For -> . FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+    (9) Cmd_Write -> . PRINT ( Exp )
+    (10) Cmd_Read -> . INPUT ( ID )
+    (11) Cmd_Read -> . INPUT ( ID [ Exp ] )
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INPUT resolved as shift
+  ! reduce/reduce conflict for $end resolved using rule 3 (Cmds -> .)
+  ! reduce/reduce conflict for } resolved using rule 3 (Cmds -> .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    $end            reduce using rule 3 (Cmds -> .)
+    }               reduce using rule 3 (Cmds -> .)
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    PRINT           shift and go to state 15
+    INPUT           shift and go to state 16
+    ID              shift and go to state 17
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! IF              [ reduce using rule 20 (VARS -> .) ]
+  ! WHILE           [ reduce using rule 20 (VARS -> .) ]
+  ! FOR             [ reduce using rule 20 (VARS -> .) ]
+  ! PRINT           [ reduce using rule 20 (VARS -> .) ]
+  ! INPUT           [ reduce using rule 20 (VARS -> .) ]
+  ! ID              [ reduce using rule 20 (VARS -> .) ]
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+  ! $end            [ reduce using rule 20 (VARS -> .) ]
+  ! }               [ reduce using rule 20 (VARS -> .) ]
+
+    Cmd                            shift and go to state 3
+    Cmds                           shift and go to state 23
+    Cmd_If                         shift and go to state 4
+    Cmd_If_Else                    shift and go to state 5
+    Cmd_While                      shift and go to state 6
+    Cmd_For                        shift and go to state 7
+    Cmd_Write                      shift and go to state 8
+    Cmd_Read                       shift and go to state 9
+    Atrib                          shift and go to state 10
+    VARS                           shift and go to state 11
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+    Decl                           shift and go to state 20
+
+state 4
+
+    (4) Cmd -> Cmd_If .
+
+    IF              reduce using rule 4 (Cmd -> Cmd_If .)
+    WHILE           reduce using rule 4 (Cmd -> Cmd_If .)
+    FOR             reduce using rule 4 (Cmd -> Cmd_If .)
+    PRINT           reduce using rule 4 (Cmd -> Cmd_If .)
+    INPUT           reduce using rule 4 (Cmd -> Cmd_If .)
+    ID              reduce using rule 4 (Cmd -> Cmd_If .)
+    VAR             reduce using rule 4 (Cmd -> Cmd_If .)
+    ARR             reduce using rule 4 (Cmd -> Cmd_If .)
+    $end            reduce using rule 4 (Cmd -> Cmd_If .)
+    }               reduce using rule 4 (Cmd -> Cmd_If .)
+
+
+state 5
+
+    (5) Cmd -> Cmd_If_Else .
+
+    IF              reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    WHILE           reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    FOR             reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    PRINT           reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    INPUT           reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    ID              reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    VAR             reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    ARR             reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    $end            reduce using rule 5 (Cmd -> Cmd_If_Else .)
+    }               reduce using rule 5 (Cmd -> Cmd_If_Else .)
+
+
+state 6
+
+    (6) Cmd -> Cmd_While .
+
+    IF              reduce using rule 6 (Cmd -> Cmd_While .)
+    WHILE           reduce using rule 6 (Cmd -> Cmd_While .)
+    FOR             reduce using rule 6 (Cmd -> Cmd_While .)
+    PRINT           reduce using rule 6 (Cmd -> Cmd_While .)
+    INPUT           reduce using rule 6 (Cmd -> Cmd_While .)
+    ID              reduce using rule 6 (Cmd -> Cmd_While .)
+    VAR             reduce using rule 6 (Cmd -> Cmd_While .)
+    ARR             reduce using rule 6 (Cmd -> Cmd_While .)
+    $end            reduce using rule 6 (Cmd -> Cmd_While .)
+    }               reduce using rule 6 (Cmd -> Cmd_While .)
+
+
+state 7
+
+    (7) Cmd -> Cmd_For .
+
+    IF              reduce using rule 7 (Cmd -> Cmd_For .)
+    WHILE           reduce using rule 7 (Cmd -> Cmd_For .)
+    FOR             reduce using rule 7 (Cmd -> Cmd_For .)
+    PRINT           reduce using rule 7 (Cmd -> Cmd_For .)
+    INPUT           reduce using rule 7 (Cmd -> Cmd_For .)
+    ID              reduce using rule 7 (Cmd -> Cmd_For .)
+    VAR             reduce using rule 7 (Cmd -> Cmd_For .)
+    ARR             reduce using rule 7 (Cmd -> Cmd_For .)
+    $end            reduce using rule 7 (Cmd -> Cmd_For .)
+    }               reduce using rule 7 (Cmd -> Cmd_For .)
+
+
+state 8
+
+    (8) Cmd -> Cmd_Write .
+
+    IF              reduce using rule 8 (Cmd -> Cmd_Write .)
+    WHILE           reduce using rule 8 (Cmd -> Cmd_Write .)
+    FOR             reduce using rule 8 (Cmd -> Cmd_Write .)
+    PRINT           reduce using rule 8 (Cmd -> Cmd_Write .)
+    INPUT           reduce using rule 8 (Cmd -> Cmd_Write .)
+    ID              reduce using rule 8 (Cmd -> Cmd_Write .)
+    VAR             reduce using rule 8 (Cmd -> Cmd_Write .)
+    ARR             reduce using rule 8 (Cmd -> Cmd_Write .)
+    $end            reduce using rule 8 (Cmd -> Cmd_Write .)
+    }               reduce using rule 8 (Cmd -> Cmd_Write .)
+
+
+state 9
+
+    (12) Cmd -> Cmd_Read .
+
+    IF              reduce using rule 12 (Cmd -> Cmd_Read .)
+    WHILE           reduce using rule 12 (Cmd -> Cmd_Read .)
+    FOR             reduce using rule 12 (Cmd -> Cmd_Read .)
+    PRINT           reduce using rule 12 (Cmd -> Cmd_Read .)
+    INPUT           reduce using rule 12 (Cmd -> Cmd_Read .)
+    ID              reduce using rule 12 (Cmd -> Cmd_Read .)
+    VAR             reduce using rule 12 (Cmd -> Cmd_Read .)
+    ARR             reduce using rule 12 (Cmd -> Cmd_Read .)
+    $end            reduce using rule 12 (Cmd -> Cmd_Read .)
+    }               reduce using rule 12 (Cmd -> Cmd_Read .)
+
+
+state 10
+
+    (13) Cmd -> Atrib . ;
+
+    ;               shift and go to state 24
+
+
+state 11
+
+    (18) Cmd -> VARS .
+
+    IF              reduce using rule 18 (Cmd -> VARS .)
+    WHILE           reduce using rule 18 (Cmd -> VARS .)
+    FOR             reduce using rule 18 (Cmd -> VARS .)
+    PRINT           reduce using rule 18 (Cmd -> VARS .)
+    INPUT           reduce using rule 18 (Cmd -> VARS .)
+    ID              reduce using rule 18 (Cmd -> VARS .)
+    VAR             reduce using rule 18 (Cmd -> VARS .)
+    ARR             reduce using rule 18 (Cmd -> VARS .)
+    $end            reduce using rule 18 (Cmd -> VARS .)
+    }               reduce using rule 18 (Cmd -> VARS .)
+
+
+state 12
+
+    (25) Cmd_If -> IF . ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> IF . ( Cond ) THEN { Cmds } ELSE { Cmds }
+
+    (               shift and go to state 25
+
+
+state 13
+
+    (27) Cmd_While -> WHILE . ( Cond ) DO { Cmds }
+
+    (               shift and go to state 26
+
+
+state 14
+
+    (28) Cmd_For -> FOR . ( Atrib ; Cond ; Atrib ) DO { Cmds }
+
+    (               shift and go to state 27
+
+
+state 15
+
+    (9) Cmd_Write -> PRINT . ( Exp )
+
+    (               shift and go to state 28
+
+
+state 16
+
+    (10) Cmd_Read -> INPUT . ( ID )
+    (11) Cmd_Read -> INPUT . ( ID [ Exp ] )
+
+    (               shift and go to state 29
+
+
+state 17
+
+    (16) Atrib_var -> ID . = Exp
+    (17) Atrib_arr -> ID . [ Exp ] = Exp
+
+    =               shift and go to state 30
+    [               shift and go to state 31
+
+
+state 18
+
+    (14) Atrib -> Atrib_var .
+
+    ;               reduce using rule 14 (Atrib -> Atrib_var .)
+    )               reduce using rule 14 (Atrib -> Atrib_var .)
+
+
+state 19
+
+    (15) Atrib -> Atrib_arr .
+
+    ;               reduce using rule 15 (Atrib -> Atrib_arr .)
+    )               reduce using rule 15 (Atrib -> Atrib_arr .)
+
+
+state 20
+
+    (19) VARS -> Decl . VARS
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    IF              reduce using rule 20 (VARS -> .)
+    WHILE           reduce using rule 20 (VARS -> .)
+    FOR             reduce using rule 20 (VARS -> .)
+    PRINT           reduce using rule 20 (VARS -> .)
+    INPUT           reduce using rule 20 (VARS -> .)
+    ID              reduce using rule 20 (VARS -> .)
+    $end            reduce using rule 20 (VARS -> .)
+    }               reduce using rule 20 (VARS -> .)
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+
+    Decl                           shift and go to state 20
+    VARS                           shift and go to state 32
+
+state 21
+
+    (21) Decl -> VAR . IdList ;
+    (23) IdList -> . ID
+    (24) IdList -> . ID , IdList
+
+    ID              shift and go to state 34
+
+    IdList                         shift and go to state 33
+
+state 22
+
+    (22) Decl -> ARR . ID [ NUM ] ;
+
+    ID              shift and go to state 35
+
+
+state 23
+
+    (2) Cmds -> Cmd Cmds .
+
+    $end            reduce using rule 2 (Cmds -> Cmd Cmds .)
+    }               reduce using rule 2 (Cmds -> Cmd Cmds .)
+
+
+state 24
+
+    (13) Cmd -> Atrib ; .
+
+    IF              reduce using rule 13 (Cmd -> Atrib ; .)
+    WHILE           reduce using rule 13 (Cmd -> Atrib ; .)
+    FOR             reduce using rule 13 (Cmd -> Atrib ; .)
+    PRINT           reduce using rule 13 (Cmd -> Atrib ; .)
+    INPUT           reduce using rule 13 (Cmd -> Atrib ; .)
+    ID              reduce using rule 13 (Cmd -> Atrib ; .)
+    VAR             reduce using rule 13 (Cmd -> Atrib ; .)
+    ARR             reduce using rule 13 (Cmd -> Atrib ; .)
+    $end            reduce using rule 13 (Cmd -> Atrib ; .)
+    }               reduce using rule 13 (Cmd -> Atrib ; .)
+
+
+state 25
+
+    (25) Cmd_If -> IF ( . Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> IF ( . Cond ) THEN { Cmds } ELSE { Cmds }
+    (39) Cond -> . NOT Cond
+    (40) Cond -> . Cond AND Cond
+    (41) Cond -> . Cond OR Cond
+    (42) Cond -> . Exp > Exp
+    (43) Cond -> . Exp > = Exp
+    (44) Cond -> . Exp < Exp
+    (45) Cond -> . Exp < = Exp
+    (46) Cond -> . Exp = = Exp
+    (47) Cond -> . Exp ! = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NOT             shift and go to state 38
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Cond                           shift and go to state 37
+    Exp                            shift and go to state 39
+    Factor                         shift and go to state 40
+
+state 26
+
+    (27) Cmd_While -> WHILE ( . Cond ) DO { Cmds }
+    (39) Cond -> . NOT Cond
+    (40) Cond -> . Cond AND Cond
+    (41) Cond -> . Cond OR Cond
+    (42) Cond -> . Exp > Exp
+    (43) Cond -> . Exp > = Exp
+    (44) Cond -> . Exp < Exp
+    (45) Cond -> . Exp < = Exp
+    (46) Cond -> . Exp = = Exp
+    (47) Cond -> . Exp ! = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NOT             shift and go to state 38
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Cond                           shift and go to state 43
+    Exp                            shift and go to state 39
+    Factor                         shift and go to state 40
+
+state 27
+
+    (28) Cmd_For -> FOR ( . Atrib ; Cond ; Atrib ) DO { Cmds }
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+
+    ID              shift and go to state 17
+
+    Atrib                          shift and go to state 44
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+
+state 28
+
+    (9) Cmd_Write -> PRINT ( . Exp )
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 45
+    Factor                         shift and go to state 40
+
+state 29
+
+    (10) Cmd_Read -> INPUT ( . ID )
+    (11) Cmd_Read -> INPUT ( . ID [ Exp ] )
+
+    ID              shift and go to state 46
+
+
+state 30
+
+    (16) Atrib_var -> ID = . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 47
+    Factor                         shift and go to state 40
+
+state 31
+
+    (17) Atrib_arr -> ID [ . Exp ] = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 48
+    Factor                         shift and go to state 40
+
+state 32
+
+    (19) VARS -> Decl VARS .
+
+    IF              reduce using rule 19 (VARS -> Decl VARS .)
+    WHILE           reduce using rule 19 (VARS -> Decl VARS .)
+    FOR             reduce using rule 19 (VARS -> Decl VARS .)
+    PRINT           reduce using rule 19 (VARS -> Decl VARS .)
+    INPUT           reduce using rule 19 (VARS -> Decl VARS .)
+    ID              reduce using rule 19 (VARS -> Decl VARS .)
+    VAR             reduce using rule 19 (VARS -> Decl VARS .)
+    ARR             reduce using rule 19 (VARS -> Decl VARS .)
+    $end            reduce using rule 19 (VARS -> Decl VARS .)
+    }               reduce using rule 19 (VARS -> Decl VARS .)
+
+
+state 33
+
+    (21) Decl -> VAR IdList . ;
+
+    ;               shift and go to state 49
+
+
+state 34
+
+    (23) IdList -> ID .
+    (24) IdList -> ID . , IdList
+
+    ;               reduce using rule 23 (IdList -> ID .)
+    ,               shift and go to state 50
+
+
+state 35
+
+    (22) Decl -> ARR ID . [ NUM ] ;
+
+    [               shift and go to state 51
+
+
+state 36
+
+    (38) Factor -> ( . Exp )
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 52
+    Factor                         shift and go to state 40
+
+state 37
+
+    (25) Cmd_If -> IF ( Cond . ) THEN { Cmds }
+    (26) Cmd_If_Else -> IF ( Cond . ) THEN { Cmds } ELSE { Cmds }
+    (40) Cond -> Cond . AND Cond
+    (41) Cond -> Cond . OR Cond
+
+    )               shift and go to state 53
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+
+state 38
+
+    (39) Cond -> NOT . Cond
+    (39) Cond -> . NOT Cond
+    (40) Cond -> . Cond AND Cond
+    (41) Cond -> . Cond OR Cond
+    (42) Cond -> . Exp > Exp
+    (43) Cond -> . Exp > = Exp
+    (44) Cond -> . Exp < Exp
+    (45) Cond -> . Exp < = Exp
+    (46) Cond -> . Exp = = Exp
+    (47) Cond -> . Exp ! = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NOT             shift and go to state 38
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Cond                           shift and go to state 56
+    Exp                            shift and go to state 39
+    Factor                         shift and go to state 40
+
+state 39
+
+    (42) Cond -> Exp . > Exp
+    (43) Cond -> Exp . > = Exp
+    (44) Cond -> Exp . < Exp
+    (45) Cond -> Exp . < = Exp
+    (46) Cond -> Exp . = = Exp
+    (47) Cond -> Exp . ! = Exp
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    >               shift and go to state 57
+    <               shift and go to state 59
+    =               shift and go to state 58
+    !               shift and go to state 60
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 40
+
+    (34) Exp -> Factor .
+
+    >               reduce using rule 34 (Exp -> Factor .)
+    <               reduce using rule 34 (Exp -> Factor .)
+    =               reduce using rule 34 (Exp -> Factor .)
+    !               reduce using rule 34 (Exp -> Factor .)
+    +               reduce using rule 34 (Exp -> Factor .)
+    -               reduce using rule 34 (Exp -> Factor .)
+    *               reduce using rule 34 (Exp -> Factor .)
+    /               reduce using rule 34 (Exp -> Factor .)
+    %               reduce using rule 34 (Exp -> Factor .)
+    )               reduce using rule 34 (Exp -> Factor .)
+    ;               reduce using rule 34 (Exp -> Factor .)
+    ]               reduce using rule 34 (Exp -> Factor .)
+    AND             reduce using rule 34 (Exp -> Factor .)
+    OR              reduce using rule 34 (Exp -> Factor .)
+
+
+state 41
+
+    (35) Factor -> NUM .
+
+    >               reduce using rule 35 (Factor -> NUM .)
+    <               reduce using rule 35 (Factor -> NUM .)
+    =               reduce using rule 35 (Factor -> NUM .)
+    !               reduce using rule 35 (Factor -> NUM .)
+    +               reduce using rule 35 (Factor -> NUM .)
+    -               reduce using rule 35 (Factor -> NUM .)
+    *               reduce using rule 35 (Factor -> NUM .)
+    /               reduce using rule 35 (Factor -> NUM .)
+    %               reduce using rule 35 (Factor -> NUM .)
+    )               reduce using rule 35 (Factor -> NUM .)
+    ;               reduce using rule 35 (Factor -> NUM .)
+    ]               reduce using rule 35 (Factor -> NUM .)
+    AND             reduce using rule 35 (Factor -> NUM .)
+    OR              reduce using rule 35 (Factor -> NUM .)
+
+
+state 42
+
+    (36) Factor -> ID .
+    (37) Factor -> ID . [ Exp ]
+
+    >               reduce using rule 36 (Factor -> ID .)
+    <               reduce using rule 36 (Factor -> ID .)
+    =               reduce using rule 36 (Factor -> ID .)
+    !               reduce using rule 36 (Factor -> ID .)
+    +               reduce using rule 36 (Factor -> ID .)
+    -               reduce using rule 36 (Factor -> ID .)
+    *               reduce using rule 36 (Factor -> ID .)
+    /               reduce using rule 36 (Factor -> ID .)
+    %               reduce using rule 36 (Factor -> ID .)
+    )               reduce using rule 36 (Factor -> ID .)
+    ;               reduce using rule 36 (Factor -> ID .)
+    ]               reduce using rule 36 (Factor -> ID .)
+    AND             reduce using rule 36 (Factor -> ID .)
+    OR              reduce using rule 36 (Factor -> ID .)
+    [               shift and go to state 66
+
+
+state 43
+
+    (27) Cmd_While -> WHILE ( Cond . ) DO { Cmds }
+    (40) Cond -> Cond . AND Cond
+    (41) Cond -> Cond . OR Cond
+
+    )               shift and go to state 67
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+
+state 44
+
+    (28) Cmd_For -> FOR ( Atrib . ; Cond ; Atrib ) DO { Cmds }
+
+    ;               shift and go to state 68
+
+
+state 45
+
+    (9) Cmd_Write -> PRINT ( Exp . )
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               shift and go to state 69
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 46
+
+    (10) Cmd_Read -> INPUT ( ID . )
+    (11) Cmd_Read -> INPUT ( ID . [ Exp ] )
+
+    )               shift and go to state 70
+    [               shift and go to state 71
+
+
+state 47
+
+    (16) Atrib_var -> ID = Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    ;               reduce using rule 16 (Atrib_var -> ID = Exp .)
+    )               reduce using rule 16 (Atrib_var -> ID = Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 48
+
+    (17) Atrib_arr -> ID [ Exp . ] = Exp
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    ]               shift and go to state 72
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 49
+
+    (21) Decl -> VAR IdList ; .
+
+    VAR             reduce using rule 21 (Decl -> VAR IdList ; .)
+    ARR             reduce using rule 21 (Decl -> VAR IdList ; .)
+    IF              reduce using rule 21 (Decl -> VAR IdList ; .)
+    WHILE           reduce using rule 21 (Decl -> VAR IdList ; .)
+    FOR             reduce using rule 21 (Decl -> VAR IdList ; .)
+    PRINT           reduce using rule 21 (Decl -> VAR IdList ; .)
+    INPUT           reduce using rule 21 (Decl -> VAR IdList ; .)
+    ID              reduce using rule 21 (Decl -> VAR IdList ; .)
+    $end            reduce using rule 21 (Decl -> VAR IdList ; .)
+    }               reduce using rule 21 (Decl -> VAR IdList ; .)
+
+
+state 50
+
+    (24) IdList -> ID , . IdList
+    (23) IdList -> . ID
+    (24) IdList -> . ID , IdList
+
+    ID              shift and go to state 34
+
+    IdList                         shift and go to state 73
+
+state 51
+
+    (22) Decl -> ARR ID [ . NUM ] ;
+
+    NUM             shift and go to state 74
+
+
+state 52
+
+    (38) Factor -> ( Exp . )
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               shift and go to state 75
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 53
+
+    (25) Cmd_If -> IF ( Cond ) . THEN { Cmds }
+    (26) Cmd_If_Else -> IF ( Cond ) . THEN { Cmds } ELSE { Cmds }
+
+    THEN            shift and go to state 76
+
+
+state 54
+
+    (40) Cond -> Cond AND . Cond
+    (39) Cond -> . NOT Cond
+    (40) Cond -> . Cond AND Cond
+    (41) Cond -> . Cond OR Cond
+    (42) Cond -> . Exp > Exp
+    (43) Cond -> . Exp > = Exp
+    (44) Cond -> . Exp < Exp
+    (45) Cond -> . Exp < = Exp
+    (46) Cond -> . Exp = = Exp
+    (47) Cond -> . Exp ! = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NOT             shift and go to state 38
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Cond                           shift and go to state 77
+    Exp                            shift and go to state 39
+    Factor                         shift and go to state 40
+
+state 55
+
+    (41) Cond -> Cond OR . Cond
+    (39) Cond -> . NOT Cond
+    (40) Cond -> . Cond AND Cond
+    (41) Cond -> . Cond OR Cond
+    (42) Cond -> . Exp > Exp
+    (43) Cond -> . Exp > = Exp
+    (44) Cond -> . Exp < Exp
+    (45) Cond -> . Exp < = Exp
+    (46) Cond -> . Exp = = Exp
+    (47) Cond -> . Exp ! = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NOT             shift and go to state 38
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Cond                           shift and go to state 78
+    Exp                            shift and go to state 39
+    Factor                         shift and go to state 40
+
+state 56
+
+    (39) Cond -> NOT Cond .
+    (40) Cond -> Cond . AND Cond
+    (41) Cond -> Cond . OR Cond
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    )               reduce using rule 39 (Cond -> NOT Cond .)
+    ;               reduce using rule 39 (Cond -> NOT Cond .)
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+  ! AND             [ reduce using rule 39 (Cond -> NOT Cond .) ]
+  ! OR              [ reduce using rule 39 (Cond -> NOT Cond .) ]
+
+
+state 57
+
+    (42) Cond -> Exp > . Exp
+    (43) Cond -> Exp > . = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    =               shift and go to state 80
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 79
+    Factor                         shift and go to state 40
+
+state 58
+
+    (46) Cond -> Exp = . = Exp
+
+    =               shift and go to state 81
+
+
+state 59
+
+    (44) Cond -> Exp < . Exp
+    (45) Cond -> Exp < . = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    =               shift and go to state 83
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 82
+    Factor                         shift and go to state 40
+
+state 60
+
+    (47) Cond -> Exp ! . = Exp
+
+    =               shift and go to state 84
+
+
+state 61
+
+    (29) Exp -> Exp + . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 85
+    Factor                         shift and go to state 40
+
+state 62
+
+    (30) Exp -> Exp - . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 86
+    Factor                         shift and go to state 40
+
+state 63
+
+    (31) Exp -> Exp * . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 87
+    Factor                         shift and go to state 40
+
+state 64
+
+    (32) Exp -> Exp / . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 88
+    Factor                         shift and go to state 40
+
+state 65
+
+    (33) Exp -> Exp % . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 89
+    Factor                         shift and go to state 40
+
+state 66
+
+    (37) Factor -> ID [ . Exp ]
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 90
+    Factor                         shift and go to state 40
+
+state 67
+
+    (27) Cmd_While -> WHILE ( Cond ) . DO { Cmds }
+
+    DO              shift and go to state 91
+
+
+state 68
+
+    (28) Cmd_For -> FOR ( Atrib ; . Cond ; Atrib ) DO { Cmds }
+    (39) Cond -> . NOT Cond
+    (40) Cond -> . Cond AND Cond
+    (41) Cond -> . Cond OR Cond
+    (42) Cond -> . Exp > Exp
+    (43) Cond -> . Exp > = Exp
+    (44) Cond -> . Exp < Exp
+    (45) Cond -> . Exp < = Exp
+    (46) Cond -> . Exp = = Exp
+    (47) Cond -> . Exp ! = Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NOT             shift and go to state 38
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Cond                           shift and go to state 92
+    Exp                            shift and go to state 39
+    Factor                         shift and go to state 40
+
+state 69
+
+    (9) Cmd_Write -> PRINT ( Exp ) .
+
+    IF              reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    WHILE           reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    FOR             reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    PRINT           reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    INPUT           reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    ID              reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    VAR             reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    ARR             reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    $end            reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+    }               reduce using rule 9 (Cmd_Write -> PRINT ( Exp ) .)
+
+
+state 70
+
+    (10) Cmd_Read -> INPUT ( ID ) .
+
+    IF              reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    WHILE           reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    FOR             reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    PRINT           reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    INPUT           reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    ID              reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    VAR             reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    ARR             reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    $end            reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+    }               reduce using rule 10 (Cmd_Read -> INPUT ( ID ) .)
+
+
+state 71
+
+    (11) Cmd_Read -> INPUT ( ID [ . Exp ] )
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 93
+    Factor                         shift and go to state 40
+
+state 72
+
+    (17) Atrib_arr -> ID [ Exp ] . = Exp
+
+    =               shift and go to state 94
+
+
+state 73
+
+    (24) IdList -> ID , IdList .
+
+    ;               reduce using rule 24 (IdList -> ID , IdList .)
+
+
+state 74
+
+    (22) Decl -> ARR ID [ NUM . ] ;
+
+    ]               shift and go to state 95
+
+
+state 75
+
+    (38) Factor -> ( Exp ) .
+
+    >               reduce using rule 38 (Factor -> ( Exp ) .)
+    <               reduce using rule 38 (Factor -> ( Exp ) .)
+    =               reduce using rule 38 (Factor -> ( Exp ) .)
+    !               reduce using rule 38 (Factor -> ( Exp ) .)
+    +               reduce using rule 38 (Factor -> ( Exp ) .)
+    -               reduce using rule 38 (Factor -> ( Exp ) .)
+    *               reduce using rule 38 (Factor -> ( Exp ) .)
+    /               reduce using rule 38 (Factor -> ( Exp ) .)
+    %               reduce using rule 38 (Factor -> ( Exp ) .)
+    )               reduce using rule 38 (Factor -> ( Exp ) .)
+    ;               reduce using rule 38 (Factor -> ( Exp ) .)
+    ]               reduce using rule 38 (Factor -> ( Exp ) .)
+    AND             reduce using rule 38 (Factor -> ( Exp ) .)
+    OR              reduce using rule 38 (Factor -> ( Exp ) .)
+
+
+state 76
+
+    (25) Cmd_If -> IF ( Cond ) THEN . { Cmds }
+    (26) Cmd_If_Else -> IF ( Cond ) THEN . { Cmds } ELSE { Cmds }
+
+    {               shift and go to state 96
+
+
+state 77
+
+    (40) Cond -> Cond AND Cond .
+    (40) Cond -> Cond . AND Cond
+    (41) Cond -> Cond . OR Cond
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    )               reduce using rule 40 (Cond -> Cond AND Cond .)
+    ;               reduce using rule 40 (Cond -> Cond AND Cond .)
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+  ! AND             [ reduce using rule 40 (Cond -> Cond AND Cond .) ]
+  ! OR              [ reduce using rule 40 (Cond -> Cond AND Cond .) ]
+
+
+state 78
+
+    (41) Cond -> Cond OR Cond .
+    (40) Cond -> Cond . AND Cond
+    (41) Cond -> Cond . OR Cond
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    )               reduce using rule 41 (Cond -> Cond OR Cond .)
+    ;               reduce using rule 41 (Cond -> Cond OR Cond .)
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+  ! AND             [ reduce using rule 41 (Cond -> Cond OR Cond .) ]
+  ! OR              [ reduce using rule 41 (Cond -> Cond OR Cond .) ]
+
+
+state 79
+
+    (42) Cond -> Exp > Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               reduce using rule 42 (Cond -> Exp > Exp .)
+    AND             reduce using rule 42 (Cond -> Exp > Exp .)
+    OR              reduce using rule 42 (Cond -> Exp > Exp .)
+    ;               reduce using rule 42 (Cond -> Exp > Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 80
+
+    (43) Cond -> Exp > = . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 97
+    Factor                         shift and go to state 40
+
+state 81
+
+    (46) Cond -> Exp = = . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 98
+    Factor                         shift and go to state 40
+
+state 82
+
+    (44) Cond -> Exp < Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               reduce using rule 44 (Cond -> Exp < Exp .)
+    AND             reduce using rule 44 (Cond -> Exp < Exp .)
+    OR              reduce using rule 44 (Cond -> Exp < Exp .)
+    ;               reduce using rule 44 (Cond -> Exp < Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 83
+
+    (45) Cond -> Exp < = . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 99
+    Factor                         shift and go to state 40
+
+state 84
+
+    (47) Cond -> Exp ! = . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 100
+    Factor                         shift and go to state 40
+
+state 85
+
+    (29) Exp -> Exp + Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+    >               reduce using rule 29 (Exp -> Exp + Exp .)
+    <               reduce using rule 29 (Exp -> Exp + Exp .)
+    =               reduce using rule 29 (Exp -> Exp + Exp .)
+    !               reduce using rule 29 (Exp -> Exp + Exp .)
+    )               reduce using rule 29 (Exp -> Exp + Exp .)
+    ;               reduce using rule 29 (Exp -> Exp + Exp .)
+    ]               reduce using rule 29 (Exp -> Exp + Exp .)
+    AND             reduce using rule 29 (Exp -> Exp + Exp .)
+    OR              reduce using rule 29 (Exp -> Exp + Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+  ! +               [ reduce using rule 29 (Exp -> Exp + Exp .) ]
+  ! -               [ reduce using rule 29 (Exp -> Exp + Exp .) ]
+  ! *               [ reduce using rule 29 (Exp -> Exp + Exp .) ]
+  ! /               [ reduce using rule 29 (Exp -> Exp + Exp .) ]
+  ! %               [ reduce using rule 29 (Exp -> Exp + Exp .) ]
+
+
+state 86
+
+    (30) Exp -> Exp - Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+    >               reduce using rule 30 (Exp -> Exp - Exp .)
+    <               reduce using rule 30 (Exp -> Exp - Exp .)
+    =               reduce using rule 30 (Exp -> Exp - Exp .)
+    !               reduce using rule 30 (Exp -> Exp - Exp .)
+    )               reduce using rule 30 (Exp -> Exp - Exp .)
+    ;               reduce using rule 30 (Exp -> Exp - Exp .)
+    ]               reduce using rule 30 (Exp -> Exp - Exp .)
+    AND             reduce using rule 30 (Exp -> Exp - Exp .)
+    OR              reduce using rule 30 (Exp -> Exp - Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+  ! +               [ reduce using rule 30 (Exp -> Exp - Exp .) ]
+  ! -               [ reduce using rule 30 (Exp -> Exp - Exp .) ]
+  ! *               [ reduce using rule 30 (Exp -> Exp - Exp .) ]
+  ! /               [ reduce using rule 30 (Exp -> Exp - Exp .) ]
+  ! %               [ reduce using rule 30 (Exp -> Exp - Exp .) ]
+
+
+state 87
+
+    (31) Exp -> Exp * Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+    >               reduce using rule 31 (Exp -> Exp * Exp .)
+    <               reduce using rule 31 (Exp -> Exp * Exp .)
+    =               reduce using rule 31 (Exp -> Exp * Exp .)
+    !               reduce using rule 31 (Exp -> Exp * Exp .)
+    )               reduce using rule 31 (Exp -> Exp * Exp .)
+    ;               reduce using rule 31 (Exp -> Exp * Exp .)
+    ]               reduce using rule 31 (Exp -> Exp * Exp .)
+    AND             reduce using rule 31 (Exp -> Exp * Exp .)
+    OR              reduce using rule 31 (Exp -> Exp * Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+  ! +               [ reduce using rule 31 (Exp -> Exp * Exp .) ]
+  ! -               [ reduce using rule 31 (Exp -> Exp * Exp .) ]
+  ! *               [ reduce using rule 31 (Exp -> Exp * Exp .) ]
+  ! /               [ reduce using rule 31 (Exp -> Exp * Exp .) ]
+  ! %               [ reduce using rule 31 (Exp -> Exp * Exp .) ]
+
+
+state 88
+
+    (32) Exp -> Exp / Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+    >               reduce using rule 32 (Exp -> Exp / Exp .)
+    <               reduce using rule 32 (Exp -> Exp / Exp .)
+    =               reduce using rule 32 (Exp -> Exp / Exp .)
+    !               reduce using rule 32 (Exp -> Exp / Exp .)
+    )               reduce using rule 32 (Exp -> Exp / Exp .)
+    ;               reduce using rule 32 (Exp -> Exp / Exp .)
+    ]               reduce using rule 32 (Exp -> Exp / Exp .)
+    AND             reduce using rule 32 (Exp -> Exp / Exp .)
+    OR              reduce using rule 32 (Exp -> Exp / Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+  ! +               [ reduce using rule 32 (Exp -> Exp / Exp .) ]
+  ! -               [ reduce using rule 32 (Exp -> Exp / Exp .) ]
+  ! *               [ reduce using rule 32 (Exp -> Exp / Exp .) ]
+  ! /               [ reduce using rule 32 (Exp -> Exp / Exp .) ]
+  ! %               [ reduce using rule 32 (Exp -> Exp / Exp .) ]
+
+
+state 89
+
+    (33) Exp -> Exp % Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+  ! shift/reduce conflict for + resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for % resolved as shift
+    >               reduce using rule 33 (Exp -> Exp % Exp .)
+    <               reduce using rule 33 (Exp -> Exp % Exp .)
+    =               reduce using rule 33 (Exp -> Exp % Exp .)
+    !               reduce using rule 33 (Exp -> Exp % Exp .)
+    )               reduce using rule 33 (Exp -> Exp % Exp .)
+    ;               reduce using rule 33 (Exp -> Exp % Exp .)
+    ]               reduce using rule 33 (Exp -> Exp % Exp .)
+    AND             reduce using rule 33 (Exp -> Exp % Exp .)
+    OR              reduce using rule 33 (Exp -> Exp % Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+  ! +               [ reduce using rule 33 (Exp -> Exp % Exp .) ]
+  ! -               [ reduce using rule 33 (Exp -> Exp % Exp .) ]
+  ! *               [ reduce using rule 33 (Exp -> Exp % Exp .) ]
+  ! /               [ reduce using rule 33 (Exp -> Exp % Exp .) ]
+  ! %               [ reduce using rule 33 (Exp -> Exp % Exp .) ]
+
+
+state 90
+
+    (37) Factor -> ID [ Exp . ]
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    ]               shift and go to state 101
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 91
+
+    (27) Cmd_While -> WHILE ( Cond ) DO . { Cmds }
+
+    {               shift and go to state 102
+
+
+state 92
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond . ; Atrib ) DO { Cmds }
+    (40) Cond -> Cond . AND Cond
+    (41) Cond -> Cond . OR Cond
+
+    ;               shift and go to state 103
+    AND             shift and go to state 54
+    OR              shift and go to state 55
+
+
+state 93
+
+    (11) Cmd_Read -> INPUT ( ID [ Exp . ] )
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    ]               shift and go to state 104
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 94
+
+    (17) Atrib_arr -> ID [ Exp ] = . Exp
+    (29) Exp -> . Exp + Exp
+    (30) Exp -> . Exp - Exp
+    (31) Exp -> . Exp * Exp
+    (32) Exp -> . Exp / Exp
+    (33) Exp -> . Exp % Exp
+    (34) Exp -> . Factor
+    (35) Factor -> . NUM
+    (36) Factor -> . ID
+    (37) Factor -> . ID [ Exp ]
+    (38) Factor -> . ( Exp )
+
+    NUM             shift and go to state 41
+    ID              shift and go to state 42
+    (               shift and go to state 36
+
+    Exp                            shift and go to state 105
+    Factor                         shift and go to state 40
+
+state 95
+
+    (22) Decl -> ARR ID [ NUM ] . ;
+
+    ;               shift and go to state 106
+
+
+state 96
+
+    (25) Cmd_If -> IF ( Cond ) THEN { . Cmds }
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { . Cmds } ELSE { Cmds }
+    (2) Cmds -> . Cmd Cmds
+    (3) Cmds -> .
+    (4) Cmd -> . Cmd_If
+    (5) Cmd -> . Cmd_If_Else
+    (6) Cmd -> . Cmd_While
+    (7) Cmd -> . Cmd_For
+    (8) Cmd -> . Cmd_Write
+    (12) Cmd -> . Cmd_Read
+    (13) Cmd -> . Atrib ;
+    (18) Cmd -> . VARS
+    (25) Cmd_If -> . IF ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> . IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+    (27) Cmd_While -> . WHILE ( Cond ) DO { Cmds }
+    (28) Cmd_For -> . FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+    (9) Cmd_Write -> . PRINT ( Exp )
+    (10) Cmd_Read -> . INPUT ( ID )
+    (11) Cmd_Read -> . INPUT ( ID [ Exp ] )
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INPUT resolved as shift
+  ! reduce/reduce conflict for } resolved using rule 3 (Cmds -> .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    }               reduce using rule 3 (Cmds -> .)
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    PRINT           shift and go to state 15
+    INPUT           shift and go to state 16
+    ID              shift and go to state 17
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! IF              [ reduce using rule 20 (VARS -> .) ]
+  ! WHILE           [ reduce using rule 20 (VARS -> .) ]
+  ! FOR             [ reduce using rule 20 (VARS -> .) ]
+  ! PRINT           [ reduce using rule 20 (VARS -> .) ]
+  ! INPUT           [ reduce using rule 20 (VARS -> .) ]
+  ! ID              [ reduce using rule 20 (VARS -> .) ]
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+  ! }               [ reduce using rule 20 (VARS -> .) ]
+
+    Cmds                           shift and go to state 107
+    Cmd                            shift and go to state 3
+    Cmd_If                         shift and go to state 4
+    Cmd_If_Else                    shift and go to state 5
+    Cmd_While                      shift and go to state 6
+    Cmd_For                        shift and go to state 7
+    Cmd_Write                      shift and go to state 8
+    Cmd_Read                       shift and go to state 9
+    Atrib                          shift and go to state 10
+    VARS                           shift and go to state 11
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+    Decl                           shift and go to state 20
+
+state 97
+
+    (43) Cond -> Exp > = Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               reduce using rule 43 (Cond -> Exp > = Exp .)
+    AND             reduce using rule 43 (Cond -> Exp > = Exp .)
+    OR              reduce using rule 43 (Cond -> Exp > = Exp .)
+    ;               reduce using rule 43 (Cond -> Exp > = Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 98
+
+    (46) Cond -> Exp = = Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               reduce using rule 46 (Cond -> Exp = = Exp .)
+    AND             reduce using rule 46 (Cond -> Exp = = Exp .)
+    OR              reduce using rule 46 (Cond -> Exp = = Exp .)
+    ;               reduce using rule 46 (Cond -> Exp = = Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 99
+
+    (45) Cond -> Exp < = Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               reduce using rule 45 (Cond -> Exp < = Exp .)
+    AND             reduce using rule 45 (Cond -> Exp < = Exp .)
+    OR              reduce using rule 45 (Cond -> Exp < = Exp .)
+    ;               reduce using rule 45 (Cond -> Exp < = Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 100
+
+    (47) Cond -> Exp ! = Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    )               reduce using rule 47 (Cond -> Exp ! = Exp .)
+    AND             reduce using rule 47 (Cond -> Exp ! = Exp .)
+    OR              reduce using rule 47 (Cond -> Exp ! = Exp .)
+    ;               reduce using rule 47 (Cond -> Exp ! = Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 101
+
+    (37) Factor -> ID [ Exp ] .
+
+    >               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    <               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    =               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    !               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    +               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    -               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    *               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    /               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    %               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    )               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    ;               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    ]               reduce using rule 37 (Factor -> ID [ Exp ] .)
+    AND             reduce using rule 37 (Factor -> ID [ Exp ] .)
+    OR              reduce using rule 37 (Factor -> ID [ Exp ] .)
+
+
+state 102
+
+    (27) Cmd_While -> WHILE ( Cond ) DO { . Cmds }
+    (2) Cmds -> . Cmd Cmds
+    (3) Cmds -> .
+    (4) Cmd -> . Cmd_If
+    (5) Cmd -> . Cmd_If_Else
+    (6) Cmd -> . Cmd_While
+    (7) Cmd -> . Cmd_For
+    (8) Cmd -> . Cmd_Write
+    (12) Cmd -> . Cmd_Read
+    (13) Cmd -> . Atrib ;
+    (18) Cmd -> . VARS
+    (25) Cmd_If -> . IF ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> . IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+    (27) Cmd_While -> . WHILE ( Cond ) DO { Cmds }
+    (28) Cmd_For -> . FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+    (9) Cmd_Write -> . PRINT ( Exp )
+    (10) Cmd_Read -> . INPUT ( ID )
+    (11) Cmd_Read -> . INPUT ( ID [ Exp ] )
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INPUT resolved as shift
+  ! reduce/reduce conflict for } resolved using rule 3 (Cmds -> .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    }               reduce using rule 3 (Cmds -> .)
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    PRINT           shift and go to state 15
+    INPUT           shift and go to state 16
+    ID              shift and go to state 17
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! IF              [ reduce using rule 20 (VARS -> .) ]
+  ! WHILE           [ reduce using rule 20 (VARS -> .) ]
+  ! FOR             [ reduce using rule 20 (VARS -> .) ]
+  ! PRINT           [ reduce using rule 20 (VARS -> .) ]
+  ! INPUT           [ reduce using rule 20 (VARS -> .) ]
+  ! ID              [ reduce using rule 20 (VARS -> .) ]
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+  ! }               [ reduce using rule 20 (VARS -> .) ]
+
+    Cmds                           shift and go to state 108
+    Cmd                            shift and go to state 3
+    Cmd_If                         shift and go to state 4
+    Cmd_If_Else                    shift and go to state 5
+    Cmd_While                      shift and go to state 6
+    Cmd_For                        shift and go to state 7
+    Cmd_Write                      shift and go to state 8
+    Cmd_Read                       shift and go to state 9
+    Atrib                          shift and go to state 10
+    VARS                           shift and go to state 11
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+    Decl                           shift and go to state 20
+
+state 103
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; . Atrib ) DO { Cmds }
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+
+    ID              shift and go to state 17
+
+    Atrib                          shift and go to state 109
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+
+state 104
+
+    (11) Cmd_Read -> INPUT ( ID [ Exp ] . )
+
+    )               shift and go to state 110
+
+
+state 105
+
+    (17) Atrib_arr -> ID [ Exp ] = Exp .
+    (29) Exp -> Exp . + Exp
+    (30) Exp -> Exp . - Exp
+    (31) Exp -> Exp . * Exp
+    (32) Exp -> Exp . / Exp
+    (33) Exp -> Exp . % Exp
+
+    ;               reduce using rule 17 (Atrib_arr -> ID [ Exp ] = Exp .)
+    )               reduce using rule 17 (Atrib_arr -> ID [ Exp ] = Exp .)
+    +               shift and go to state 61
+    -               shift and go to state 62
+    *               shift and go to state 63
+    /               shift and go to state 64
+    %               shift and go to state 65
+
+
+state 106
+
+    (22) Decl -> ARR ID [ NUM ] ; .
+
+    VAR             reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    ARR             reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    IF              reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    WHILE           reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    FOR             reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    PRINT           reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    INPUT           reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    ID              reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    $end            reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+    }               reduce using rule 22 (Decl -> ARR ID [ NUM ] ; .)
+
+
+state 107
+
+    (25) Cmd_If -> IF ( Cond ) THEN { Cmds . }
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { Cmds . } ELSE { Cmds }
+
+    }               shift and go to state 111
+
+
+state 108
+
+    (27) Cmd_While -> WHILE ( Cond ) DO { Cmds . }
+
+    }               shift and go to state 112
+
+
+state 109
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; Atrib . ) DO { Cmds }
+
+    )               shift and go to state 113
+
+
+state 110
+
+    (11) Cmd_Read -> INPUT ( ID [ Exp ] ) .
+
+    IF              reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    WHILE           reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    FOR             reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    PRINT           reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    INPUT           reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    ID              reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    VAR             reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    ARR             reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    $end            reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+    }               reduce using rule 11 (Cmd_Read -> INPUT ( ID [ Exp ] ) .)
+
+
+state 111
+
+    (25) Cmd_If -> IF ( Cond ) THEN { Cmds } .
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { Cmds } . ELSE { Cmds }
+
+    IF              reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    WHILE           reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    FOR             reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    PRINT           reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    INPUT           reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    ID              reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    VAR             reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    ARR             reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    $end            reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    }               reduce using rule 25 (Cmd_If -> IF ( Cond ) THEN { Cmds } .)
+    ELSE            shift and go to state 114
+
+
+state 112
+
+    (27) Cmd_While -> WHILE ( Cond ) DO { Cmds } .
+
+    IF              reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    WHILE           reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    FOR             reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    PRINT           reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    INPUT           reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    ID              reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    VAR             reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    ARR             reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    $end            reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+    }               reduce using rule 27 (Cmd_While -> WHILE ( Cond ) DO { Cmds } .)
+
+
+state 113
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) . DO { Cmds }
+
+    DO              shift and go to state 115
+
+
+state 114
+
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE . { Cmds }
+
+    {               shift and go to state 116
+
+
+state 115
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO . { Cmds }
+
+    {               shift and go to state 117
+
+
+state 116
+
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { . Cmds }
+    (2) Cmds -> . Cmd Cmds
+    (3) Cmds -> .
+    (4) Cmd -> . Cmd_If
+    (5) Cmd -> . Cmd_If_Else
+    (6) Cmd -> . Cmd_While
+    (7) Cmd -> . Cmd_For
+    (8) Cmd -> . Cmd_Write
+    (12) Cmd -> . Cmd_Read
+    (13) Cmd -> . Atrib ;
+    (18) Cmd -> . VARS
+    (25) Cmd_If -> . IF ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> . IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+    (27) Cmd_While -> . WHILE ( Cond ) DO { Cmds }
+    (28) Cmd_For -> . FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+    (9) Cmd_Write -> . PRINT ( Exp )
+    (10) Cmd_Read -> . INPUT ( ID )
+    (11) Cmd_Read -> . INPUT ( ID [ Exp ] )
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INPUT resolved as shift
+  ! reduce/reduce conflict for } resolved using rule 3 (Cmds -> .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    }               reduce using rule 3 (Cmds -> .)
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    PRINT           shift and go to state 15
+    INPUT           shift and go to state 16
+    ID              shift and go to state 17
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! IF              [ reduce using rule 20 (VARS -> .) ]
+  ! WHILE           [ reduce using rule 20 (VARS -> .) ]
+  ! FOR             [ reduce using rule 20 (VARS -> .) ]
+  ! PRINT           [ reduce using rule 20 (VARS -> .) ]
+  ! INPUT           [ reduce using rule 20 (VARS -> .) ]
+  ! ID              [ reduce using rule 20 (VARS -> .) ]
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+  ! }               [ reduce using rule 20 (VARS -> .) ]
+
+    Cmds                           shift and go to state 118
+    Cmd                            shift and go to state 3
+    Cmd_If                         shift and go to state 4
+    Cmd_If_Else                    shift and go to state 5
+    Cmd_While                      shift and go to state 6
+    Cmd_For                        shift and go to state 7
+    Cmd_Write                      shift and go to state 8
+    Cmd_Read                       shift and go to state 9
+    Atrib                          shift and go to state 10
+    VARS                           shift and go to state 11
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+    Decl                           shift and go to state 20
+
+state 117
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { . Cmds }
+    (2) Cmds -> . Cmd Cmds
+    (3) Cmds -> .
+    (4) Cmd -> . Cmd_If
+    (5) Cmd -> . Cmd_If_Else
+    (6) Cmd -> . Cmd_While
+    (7) Cmd -> . Cmd_For
+    (8) Cmd -> . Cmd_Write
+    (12) Cmd -> . Cmd_Read
+    (13) Cmd -> . Atrib ;
+    (18) Cmd -> . VARS
+    (25) Cmd_If -> . IF ( Cond ) THEN { Cmds }
+    (26) Cmd_If_Else -> . IF ( Cond ) THEN { Cmds } ELSE { Cmds }
+    (27) Cmd_While -> . WHILE ( Cond ) DO { Cmds }
+    (28) Cmd_For -> . FOR ( Atrib ; Cond ; Atrib ) DO { Cmds }
+    (9) Cmd_Write -> . PRINT ( Exp )
+    (10) Cmd_Read -> . INPUT ( ID )
+    (11) Cmd_Read -> . INPUT ( ID [ Exp ] )
+    (14) Atrib -> . Atrib_var
+    (15) Atrib -> . Atrib_arr
+    (19) VARS -> . Decl VARS
+    (20) VARS -> .
+    (16) Atrib_var -> . ID = Exp
+    (17) Atrib_arr -> . ID [ Exp ] = Exp
+    (21) Decl -> . VAR IdList ;
+    (22) Decl -> . ARR ID [ NUM ] ;
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for INPUT resolved as shift
+  ! reduce/reduce conflict for } resolved using rule 3 (Cmds -> .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for ARR resolved as shift
+    }               reduce using rule 3 (Cmds -> .)
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    PRINT           shift and go to state 15
+    INPUT           shift and go to state 16
+    ID              shift and go to state 17
+    VAR             shift and go to state 21
+    ARR             shift and go to state 22
+
+  ! IF              [ reduce using rule 20 (VARS -> .) ]
+  ! WHILE           [ reduce using rule 20 (VARS -> .) ]
+  ! FOR             [ reduce using rule 20 (VARS -> .) ]
+  ! PRINT           [ reduce using rule 20 (VARS -> .) ]
+  ! INPUT           [ reduce using rule 20 (VARS -> .) ]
+  ! ID              [ reduce using rule 20 (VARS -> .) ]
+  ! VAR             [ reduce using rule 20 (VARS -> .) ]
+  ! ARR             [ reduce using rule 20 (VARS -> .) ]
+  ! }               [ reduce using rule 20 (VARS -> .) ]
+
+    Atrib                          shift and go to state 10
+    Cmds                           shift and go to state 119
+    Cmd                            shift and go to state 3
+    Cmd_If                         shift and go to state 4
+    Cmd_If_Else                    shift and go to state 5
+    Cmd_While                      shift and go to state 6
+    Cmd_For                        shift and go to state 7
+    Cmd_Write                      shift and go to state 8
+    Cmd_Read                       shift and go to state 9
+    VARS                           shift and go to state 11
+    Atrib_var                      shift and go to state 18
+    Atrib_arr                      shift and go to state 19
+    Decl                           shift and go to state 20
+
+state 118
+
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds . }
+
+    }               shift and go to state 120
+
+
+state 119
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds . }
+
+    }               shift and go to state 121
+
+
+state 120
+
+    (26) Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .
+
+    IF              reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    WHILE           reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    FOR             reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    PRINT           reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    INPUT           reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    ID              reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    VAR             reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    ARR             reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    $end            reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+    }               reduce using rule 26 (Cmd_If_Else -> IF ( Cond ) THEN { Cmds } ELSE { Cmds } .)
+
+
+state 121
+
+    (28) Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .
+
+    IF              reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    WHILE           reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    FOR             reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    PRINT           reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    INPUT           reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    ID              reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    VAR             reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    ARR             reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    $end            reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+    }               reduce using rule 28 (Cmd_For -> FOR ( Atrib ; Cond ; Atrib ) DO { Cmds } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IF in state 0 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 0 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 0 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 0 resolved as shift
+WARNING: shift/reduce conflict for INPUT in state 0 resolved as shift
+WARNING: shift/reduce conflict for ID in state 0 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 0 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 0 resolved as shift
+WARNING: shift/reduce conflict for IF in state 3 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 3 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 3 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 3 resolved as shift
+WARNING: shift/reduce conflict for INPUT in state 3 resolved as shift
+WARNING: shift/reduce conflict for ID in state 3 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 3 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 3 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 20 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 20 resolved as shift
+WARNING: shift/reduce conflict for AND in state 56 resolved as shift
+WARNING: shift/reduce conflict for OR in state 56 resolved as shift
+WARNING: shift/reduce conflict for AND in state 77 resolved as shift
+WARNING: shift/reduce conflict for OR in state 77 resolved as shift
+WARNING: shift/reduce conflict for AND in state 78 resolved as shift
+WARNING: shift/reduce conflict for OR in state 78 resolved as shift
+WARNING: shift/reduce conflict for + in state 85 resolved as shift
+WARNING: shift/reduce conflict for - in state 85 resolved as shift
+WARNING: shift/reduce conflict for * in state 85 resolved as shift
+WARNING: shift/reduce conflict for / in state 85 resolved as shift
+WARNING: shift/reduce conflict for % in state 85 resolved as shift
+WARNING: shift/reduce conflict for + in state 86 resolved as shift
+WARNING: shift/reduce conflict for - in state 86 resolved as shift
+WARNING: shift/reduce conflict for * in state 86 resolved as shift
+WARNING: shift/reduce conflict for / in state 86 resolved as shift
+WARNING: shift/reduce conflict for % in state 86 resolved as shift
+WARNING: shift/reduce conflict for + in state 87 resolved as shift
+WARNING: shift/reduce conflict for - in state 87 resolved as shift
+WARNING: shift/reduce conflict for * in state 87 resolved as shift
+WARNING: shift/reduce conflict for / in state 87 resolved as shift
+WARNING: shift/reduce conflict for % in state 87 resolved as shift
+WARNING: shift/reduce conflict for + in state 88 resolved as shift
+WARNING: shift/reduce conflict for - in state 88 resolved as shift
+WARNING: shift/reduce conflict for * in state 88 resolved as shift
+WARNING: shift/reduce conflict for / in state 88 resolved as shift
+WARNING: shift/reduce conflict for % in state 88 resolved as shift
+WARNING: shift/reduce conflict for + in state 89 resolved as shift
+WARNING: shift/reduce conflict for - in state 89 resolved as shift
+WARNING: shift/reduce conflict for * in state 89 resolved as shift
+WARNING: shift/reduce conflict for / in state 89 resolved as shift
+WARNING: shift/reduce conflict for % in state 89 resolved as shift
+WARNING: shift/reduce conflict for IF in state 96 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 96 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 96 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 96 resolved as shift
+WARNING: shift/reduce conflict for INPUT in state 96 resolved as shift
+WARNING: shift/reduce conflict for ID in state 96 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 96 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 96 resolved as shift
+WARNING: shift/reduce conflict for IF in state 102 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 102 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 102 resolved as shift
+WARNING: shift/reduce conflict for INPUT in state 102 resolved as shift
+WARNING: shift/reduce conflict for ID in state 102 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 102 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 102 resolved as shift
+WARNING: shift/reduce conflict for IF in state 116 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 116 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 116 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 116 resolved as shift
+WARNING: shift/reduce conflict for INPUT in state 116 resolved as shift
+WARNING: shift/reduce conflict for ID in state 116 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 116 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 116 resolved as shift
+WARNING: shift/reduce conflict for IF in state 117 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 117 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 117 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 117 resolved as shift
+WARNING: shift/reduce conflict for INPUT in state 117 resolved as shift
+WARNING: shift/reduce conflict for ID in state 117 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 117 resolved as shift
+WARNING: shift/reduce conflict for ARR in state 117 resolved as shift
+WARNING: reduce/reduce conflict in state 0 resolved using rule (Cmds -> <empty>)
+WARNING: rejected rule (VARS -> <empty>) in state 0
+WARNING: reduce/reduce conflict in state 3 resolved using rule (Cmds -> <empty>)
+WARNING: rejected rule (VARS -> <empty>) in state 3
+WARNING: reduce/reduce conflict in state 96 resolved using rule (Cmds -> <empty>)
+WARNING: rejected rule (VARS -> <empty>) in state 96
+WARNING: reduce/reduce conflict in state 102 resolved using rule (Cmds -> <empty>)
+WARNING: rejected rule (VARS -> <empty>) in state 102
+WARNING: reduce/reduce conflict in state 116 resolved using rule (Cmds -> <empty>)
+WARNING: rejected rule (VARS -> <empty>) in state 116
+WARNING: reduce/reduce conflict in state 117 resolved using rule (Cmds -> <empty>)
+WARNING: rejected rule (VARS -> <empty>) in state 117

@@ -1,0 +1,4 @@
+var plc ;
+plc = 100 ;
+
+while (plc > 98) do { plc = plc - 1 ; }
